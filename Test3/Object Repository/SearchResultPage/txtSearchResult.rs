@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>txtSearchResult</name>
+   <tag></tag>
+   <elementGuidId>054b7b77-14ba-4cfe-a33f-7b37c95c402a</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='searchText']/input</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>//div[@id='searchText']/input</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+</WebElementEntity>

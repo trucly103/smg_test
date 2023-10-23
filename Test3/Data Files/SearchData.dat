@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>SearchData</name>
+   <tag></tag>
+   <connectionProperties/>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>0b7f3e71-f059-46d5-8bd9-3f965e8c6a00</dataFileGUID>
+   <dataSourceUrl></dataSourceUrl>
+   <driver>InternalData</driver>
+   <data>+Verify+search+result+when+user+input+search+keyword+with+1+%3C+Numer+of+characters+%3C+300 software+testing 1+%E2%80%93+20 null There+is+a+page+named+%22Software+testing%22+on+Wikipedia View+%28previous+20+%7C+next+20%29+%2820+%7C+50+%7C+100+%7C+250+%7C+500%29 null</data>
+   <data>Verify+search+result+when+user+input+search+keyword+with+Numer+of+characters+%3E+301 softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting001234 null null null null An+error+has+occurred+while+searching%3A+Search+request+is+longer+than+the+maximum+allowed+length.+%28Actual%3A+301%3B+allowed%3A+300%29</data>
+   <internalDataColumns>
+      <columnIndex>0</columnIndex>
+      <name>TC</name>
+      <size>2</size>
+   </internalDataColumns>
+   <internalDataColumns>
+      <columnIndex>1</columnIndex>
+      <name>SearchKeyword</name>
+      <size>2</size>
+   </internalDataColumns>
+   <internalDataColumns>
+      <columnIndex>2</columnIndex>
+      <name>PageResult</name>
+      <size>2</size>
+   </internalDataColumns>
+   <internalDataColumns>
+      <columnIndex>3</columnIndex>
+      <name>SearchResult</name>
+      <size>2</size>
+   </internalDataColumns>
+   <internalDataColumns>
+      <columnIndex>4</columnIndex>
+      <name>PageName</name>
+      <size>2</size>
+   </internalDataColumns>
+   <internalDataColumns>
+      <columnIndex>5</columnIndex>
+      <name>PageView</name>
+      <size>2</size>
+   </internalDataColumns>
+   <internalDataColumns>
+      <columnIndex>6</columnIndex>
+      <name>ErrorMessage</name>
+      <size>2</size>
+   </internalDataColumns>
+   <isInternalPath>false</isInternalPath>
+   <query></query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName></sheetName>
+   <usingGlobalDBSetting>false</usingGlobalDBSetting>
+</DataFileEntity>
