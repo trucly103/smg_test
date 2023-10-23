@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "f53825c2-1cec-46ef-a1aa-284dceddad2e",
+		"name": "SearchWiki_TruongThiTrucLy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6146877",
+		"_collection_link": "https://crimson-equinox-984716.postman.co/workspace/WS1~b1afc951-b1c0-4848-8e41-556200db0756/collection/6146877-f53825c2-1cec-46ef-a1aa-284dceddad2e?action=share&source=collection_link&creator=6146877"
+	},
+	"item": [
+		{
+			"name": "Search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Verify status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response time is less than 600ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"let responseData = pm.response.json();\r",
+							"\r",
+							"//Get Params\r",
+							"const strSearch = pm.request.url.query.toObject().srsearch;\r",
+							"\r",
+							"var intOffset = parseInt(pm.request.url.query.toObject().sroffset);\r",
+							"\r",
+							"\r",
+							"//Check exist Search\r",
+							"if(strSearch)\r",
+							"{\r",
+							"        //Check offset isNAN or Not\r",
+							"        if(isNaN(intOffset))\r",
+							"        {\r",
+							"            var errorCode = responseData.error.code;\r",
+							"            pm.test(\"Verify invalid offset: \" +errorCode, function () {\r",
+							"            pm.expect(!!errorCode.match(\"badinteger\"));\r",
+							"            })\r",
+							"        }\r",
+							"        else\r",
+							"        {\r",
+							"            var totalhits = parseInt(responseData.query.searchinfo.totalhits);\r",
+							"            console.log('totalhits', totalhits);\r",
+							"            if(totalhits > 0)\r",
+							"            {\r",
+							"        \r",
+							"                if(intOffset >= 0)\r",
+							"                {\r",
+							"                    intOffset = intOffset + 10;\r",
+							"                    console.log('intOffset', intOffset);\r",
+							"                    pm.test(\"Verify offset response is \" + intOffset, function(){\r",
+							"                    pm.expect(responseData.continue.sroffset).to.equal(intOffset);\r",
+							"                    });\r",
+							"                }\r",
+							"                else\r",
+							"                {\r",
+							"                    intOffset = 10;\r",
+							"                    var strWarnings = responseData.warnings.search.warnings;\r",
+							"                    console.log('strWarnings', strWarnings);\r",
+							"                    pm.test(\"Verify warning: \" +strWarnings, function () {\r",
+							"                    pm.expect(!!strWarnings.match(strWarnings));\r",
+							"                    })    \r",
+							"\r",
+							"                }\r",
+							"                //Save value respone in arraySearch\r",
+							"                var arrSnippet = responseData.query.search.map(function(result) {\r",
+							"                return result.snippet\r",
+							"                });\r",
+							"                //console.log('snppets', arrSnippet);\r",
+							"\r",
+							"                //const regex1 = /software|testing/ig;\r",
+							"                //Compare strSearch\r",
+							"                for(var i= 0; i < JSON.stringify(arrSnippet.length); i++)\r",
+							"                {\r",
+							"    \r",
+							"                     //console.log(\"Snippet will display :\" + arrSnippet[i]);\r",
+							"                    var k = i+ 1;\r",
+							"                    pm.test(\"Verify there is search match \" +k, function () {\r",
+							"                    pm.expect(!!arrSnippet[i].match(strSearch));\r",
+							"                    })    \r",
+							"                }\r",
+							"            }\r",
+							"            else\r",
+							"            {        \r",
+							"                pm.test(\"Verify there is No search match: \" +totalhits, function () {\r",
+							"                pm.expect(totalhits==0);\r",
+							"                })\r",
+							"            }\r",
+							"        }     \r",
+							"\r",
+							"} \r",
+							"else\r",
+							"{\r",
+							"    var errorCode = responseData.error.code;\r",
+							"    pm.test(\"Verify missing string: \" +errorCode, function () {\r",
+							"            pm.expect(!!errorCode.match(\"missingparam\"));\r",
+							"    })       \r",
+							"}\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&continue=-%7C%7C&formatversion=2&srsearch={{inpSearch}}&sroffset={{inpOffset}}",
+					"protocol": "https",
+					"host": [
+						"en",
+						"wikipedia",
+						"org"
+					],
+					"path": [
+						"w",
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "list",
+							"value": "search"
+						},
+						{
+							"key": "continue",
+							"value": "-%7C%7C"
+						},
+						{
+							"key": "formatversion",
+							"value": "2"
+						},
+						{
+							"key": "srsearch",
+							"value": "{{inpSearch}}"
+						},
+						{
+							"key": "sroffset",
+							"value": "{{inpOffset}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.globals.get(\"variable_key\");",
+					"pm.environment.get(\"variable_key\");",
+					"pm.collectionVariables.get(\"variable_key\");",
+					"pm.variables.get(\"variable_key\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.get(\"variable_key\");",
+					"pm.variables.get(\"variable_key\");"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Url",
+			"value": "https://reqres.in",
+			"type": "string"
+		}
+	]
+}
