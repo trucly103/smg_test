@@ -68,7 +68,6 @@ public class SearchResultPage{
 
 	@Keyword
 	def checkErrorMessageMatch(inpErrorMessage,outErrorMessage){
-
 		WebUI.verifyMatch(inpErrorMessage, outErrorMessage, false);
 	}
 }

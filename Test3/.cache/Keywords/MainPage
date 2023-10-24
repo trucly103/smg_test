@@ -6,7 +6,8 @@
       "keywordMethods": [
         {
           "name": "clickSearchIconButton",
-          "parameters": []
+          "parameters": [],
+          "javadoc": ""
         },
         {
           "name": "inputSearchText",
@@ -24,14 +25,16 @@
                 "errorOnParsing": false
               }
             }
-          ]
+          ],
+          "javadoc": ""
         },
         {
           "name": "clickSearchButton",
-          "parameters": []
+          "parameters": [],
+          "javadoc": ""
         }
       ]
     }
   ],
-  "javadocParsed": false
+  "javadocParsed": true
 }

@@ -19,17 +19,22 @@ import org.openqa.selenium.Keys as Keys
 
 
 
+
 TestData SearchData = findTestData('SearchData')
 
-for (int i = 1; i <= 2; i++) {
+
+
+for (def i : (1..SearchData.getRowNumbers())) 
+{
+	
+	//Read Data files
+	 String  inpPageName     		 = SearchData.getObjectValue('PageName', i).toString();
+	 String  inpPageView   	 		 = SearchData.getObjectValue('PageView', i).toString();
+	 String  inpPageResult 	 		 = SearchData.getObjectValue('PageResult', i).toString();
+	 String  inpSearchResult 		 = SearchData.getObjectValue('SearchResult', i).toString();
+	 String  inpErrorMessage     	 = SearchData.getObjectValue('ErrorMessage', i).toString();
 	
 	 
-	String  inpPageName     		 = SearchData.getObjectValue('PageName', i).toString();
-	String  inpPageView   	 		 = SearchData.getObjectValue('PageView', i).toString();
-	String  inpPageResult 	 		 = SearchData.getObjectValue('PageResult', i).toString();
-	String  inpSearchResult 		 = SearchData.getObjectValue('SearchResult', i).toString();
-	String  inpErrorMessage     	 = SearchData.getObjectValue('ErrorMessage', i).toString();
-	
 	 WebUI.openBrowser(GlobalVariable.Url);
 	
 	 WebUI.maximizeWindow();
@@ -39,9 +44,11 @@ for (int i = 1; i <= 2; i++) {
 	 CustomKeywords.'MainPage.inputSearchText'(SearchData.getObjectValue('SearchKeyword', i).toString());
 	 CustomKeywords.'MainPage.clickSearchButton'();
 	 
+	 //If search return error
 	 if (inpErrorMessage)
 	 {
-		 outErrorMessage   	= CustomKeywords.'SearchResultPage.getErrorMessageText'();
+		 CustomKeywords.'SearchResultPage.isSearchHeaderText'();
+		 outErrorMessage = CustomKeywords.'SearchResultPage.getErrorMessageText'();
 		 CustomKeywords.'SearchResultPage.checkErrorMessageMatch'(inpErrorMessage,outErrorMessage);
 		 WebUI.closeBrowser();
 		 
@@ -50,12 +57,13 @@ for (int i = 1; i <= 2; i++) {
 	 else
 	 {			
 		 
-		 outPageName   	 	= CustomKeywords.'SearchResultPage.getPageNameText'();
-		 outPageView   	 	= CustomKeywords.'SearchResultPage.getPageViewText'();
-		 outPageResult 	 	= CustomKeywords.'SearchResultPage.getPageResultText'()
-		 outSearchResult  	= CustomKeywords.'SearchResultPage.getSearchResultText'();
+		 String outPageName   	 	= CustomKeywords.'SearchResultPage.getPageNameText'();
+		 String outPageView   	 	= CustomKeywords.'SearchResultPage.getPageViewText'();
+		 String outPageResult 	 	= CustomKeywords.'SearchResultPage.getPageResultText'()
+		 String outSearchResult  	= CustomKeywords.'SearchResultPage.getSearchResultText'();
 		 
 		 //Verify matching data
+		 CustomKeywords.'SearchResultPage.isSearchHeaderText'();
 		 CustomKeywords.'SearchResultPage.checkSearchMatch'(inpPageName, inpPageView, inpPageResult, inpSearchResult, outPageName, outPageView, outPageResult, outSearchResult);
 		 WebUI.closeBrowser();
 					 

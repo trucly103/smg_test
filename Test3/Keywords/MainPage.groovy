@@ -29,9 +29,8 @@ public class MainPage {
 
 	@Keyword
 	def inputSearchText(String txtSearch) {
-				
+
 		WebUI.sendKeys(findTestObject('Object Repository/MainPage/txtSearch'), txtSearch)
-	
 	}
 
 	@Keyword

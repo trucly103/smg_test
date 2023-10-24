@@ -1,0 +1,10 @@
+No,TC,inpSearch,inpOffset
+1,Verify there is search match in case search has upper case or lowercase and and offset is smaller than 0,@Test,-1
+2,Verify there is search match in case search and offset are valid,software testing,10
+3,Verify there is No search match in case search and offset are valid,samsung test@54564564 459,10
+4,Verify there is search match in case search is valid and offset is smaller than 0,software testing,-1
+5,Verify there is search match in case search is injection sql and offset is valid,or 1=1,10
+6,Verify error message in case search and offset are blank,,
+7,Verify error message in case search is valid and offset is invalid,-1,a
+8,Verify error message in case search is valid and offset is blank,a,
+9,Verify error message in case search is over max length and offset is valid,softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting0012345678910softwaretesting001234,10
